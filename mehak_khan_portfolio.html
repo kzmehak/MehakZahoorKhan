@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. Mehak Zahoor Khan - Portfolio</title>
+    <style>
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; line-height: 1.6; color: var(--text-primary); }
+        :root { --text-primary: #1a1a1a; --text-secondary: #666; --text-muted: #999; --bg-light: #f5f3f0; --bg-white: #ffffff; --accent: #1e40af; --accent-light: #3b82f6; --border: #e5e5e5; }
+        @media (prefers-color-scheme: dark) { :root { --text-primary: #f5f5f5; --text-secondary: #d0d0d0; --text-muted: #999; --bg-light: #1a1a1a; --bg-white: #2d2d2d; --accent: #3b82f6; --accent-light: #60a5fa; --border: #444; } }
+        
+        header { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: white; padding: 3rem 1.5rem; text-align: center; }
+        header h1 { font-size: 2.8rem; margin-bottom: 0.5rem; font-weight: 700; }
+        header .tagline { font-size: 1rem; opacity: 0.95; margin-bottom: 0.5rem; }
+        header .subtagline { font-size: 1.05rem; opacity: 0.9; margin-bottom: 1.5rem; line-height: 1.7; max-width: 800px; margin-left: auto; margin-right: auto; }
+        
+        nav { background: var(--bg-white); border-bottom: 2px solid var(--border); position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+        nav .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; display: flex; justify-content: space-between; align-items: center; }
+        nav .nav-links { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
+        nav a { padding: 1rem 1.25rem; text-decoration: none; color: var(--text-primary); font-weight: 500; border-bottom: 3px solid transparent; transition: all 0.3s; cursor: pointer; font-size: 0.95rem; }
+        nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+        section { padding: 4rem 1.5rem; scroll-margin-top: 80px; }
+        section h2 { font-size: 2.2rem; margin-bottom: 0.5rem; font-weight: 700; }
+        section .section-subtitle { color: var(--text-secondary); font-size: 1.1rem; margin-bottom: 2rem; }
+        
+        .collapsible-header { display: flex; justify-content: space-between; align-items: center; cursor: pointer; padding: 1rem 1.5rem; background: var(--accent); color: white; border-radius: 8px; font-weight: 600; user-select: none; margin-bottom: 0.5rem; }
+        .collapsible-header:hover { background: var(--accent-light); }
+        .collapsible-header.active { background: var(--accent-light); }
+        .collapsible-header .toggle { font-size: 1.5rem; transition: transform 0.3s; }
+        .collapsible-header.active .toggle { transform: rotate(180deg); }
+        .collapsible-content { display: none; background: var(--bg-white); border: 1px solid var(--border); border-top: none; padding: 2rem; border-radius: 0 0 8px 8px; margin-bottom: 2rem; }
+        .collapsible-content.active { display: block; }
+        
+        .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem; }
+        .grid-4 { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        
+        .about-intro { display: grid; grid-template-columns: 280px 1fr; gap: 2rem; align-items: start; margin-top: 2rem; }
+        .about-photo { width: 100%; border-radius: 12px; object-fit: cover; box-shadow: 0 10px 30px rgba(0,0,0,0.15); aspect-ratio: 1; }
+        .about-text p { margin-bottom: 1rem; color: var(--text-secondary); line-height: 1.8; }
+        
+        .stat-box { background: var(--accent); color: white; padding: 1.5rem; border-radius: 10px; text-align: center; box-shadow: 0 4px 15px rgba(30, 64, 175, 0.2); cursor: pointer; transition: all 0.3s; }
+        .stat-box:hover { transform: translateY(-3px); background: var(--accent-light); }
+        .stat-number { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .stat-label { font-size: 0.9rem; opacity: 0.95; }
+        
+        .timeline { position: relative; }
+        .timeline::before { content: ''; position: absolute; left: 25px; top: 0; bottom: 0; width: 2px; background: var(--accent-light); }
+        .timeline-item { margin-bottom: 3rem; padding-left: 80px; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: 12px; top: 5px; width: 26px; height: 26px; background: var(--accent); border-radius: 50%; border: 3px solid var(--bg-white); box-shadow: 0 0 0 2px var(--accent-light); }
+        .timeline-item h3 { font-size: 1.25rem; margin-bottom: 0.25rem; font-weight: 700; }
+        .timeline-item .company { color: var(--accent); font-weight: 700; margin-bottom: 0.5rem; }
+        .timeline-item .date { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem; font-weight: 500; }
+        .timeline-item ul { list-style: none; margin-left: 0; }
+        .timeline-item li { padding: 0.5rem 0; color: var(--text-secondary); margin-bottom: 0.5rem; line-height: 1.7; }
+        .timeline-item li::before { content: '• '; color: var(--accent); font-weight: bold; margin-right: 0.75rem; }
+        
+        .card { background: var(--bg-white); padding: 1.75rem; border-radius: 10px; border: 1px solid var(--border); transition: all 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .card h3 { color: var(--accent); margin-bottom: 0.75rem; font-size: 1.1rem; font-weight: 700; }
+        .card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+        
+        .award-card { background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%); color: white; padding: 1.5rem; border-radius: 10px; text-align: left; box-shadow: 0 4px 15px rgba(30, 64, 175, 0.2); }
+        .award-year { font-size: 0.85rem; opacity: 0.9; margin-bottom: 0.5rem; font-weight: 600; }
+        .award-name { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .award-org { font-size: 0.9rem; opacity: 0.95; }
+        
+        .skill-box { background: var(--bg-white); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--accent-light); }
+        .skill-box h4 { color: var(--text-primary); margin-bottom: 1rem; font-weight: 700; }
+        .skill-box ul { list-style: none; }
+        .skill-box li { padding: 0.4rem 0; color: var(--text-secondary); font-size: 0.95rem; }
+        .skill-box li::before { content: '◆ '; color: var(--accent-light); margin-right: 0.5rem; }
+        
+        .publication-item { background: var(--bg-white); padding: 1.5rem; border-left: 3px solid var(--accent); border-radius: 4px; margin-bottom: 1.5rem; }
+        .pub-title { font-weight: 700; color: var(--accent); margin-bottom: 0.5rem; cursor: pointer; text-decoration: underline; }
+        .pub-title:hover { color: var(--accent-light); }
+        .pub-authors { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem; }
+        .pub-authors .first-author { font-weight: 700; color: var(--text-primary); }
+        .pub-meta { font-size: 0.9rem; color: var(--text-muted); }
+        .pub-meta .badge { background: #e3f2fd; color: var(--accent); padding: 0.25rem 0.75rem; border-radius: 4px; font-size: 0.8rem; font-weight: 600; display: inline-block; margin-top: 0.5rem; }
+        
+        .press-item { background: var(--bg-white); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 1rem; }
+        .press-item a { color: var(--accent); text-decoration: none; font-weight: 500; }
+        .press-item a:hover { text-decoration: underline; }
+        
+        .media-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .media-card { position: relative; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer; transition: all 0.3s; }
+        .media-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .media-card img { width: 100%; height: 280px; object-fit: cover; display: block; }
+        .media-card-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); color: white; padding: 1.5rem; padding-top: 3rem; }
+        .media-card-title { font-weight: 700; margin-bottom: 0.5rem; font-size: 0.95rem; line-height: 1.4; }
+        .media-card-source { font-size: 0.8rem; opacity: 0.9; }
+        
+        .talk-item { background: var(--bg-white); padding: 1.5rem; border-radius: 8px; border-left: 4px solid var(--accent-light); margin-bottom: 1rem; }
+        .talk-item .title { font-weight: 700; color: var(--text-primary); margin-bottom: 0.5rem; }
+        .talk-item .meta { font-size: 0.95rem; color: var(--accent); font-weight: 500; }
+        .talk-item .location { font-size: 0.9rem; color: var(--text-secondary); margin-top: 0.5rem; }
+        .talk-item .award { background: #fff3cd; color: #856404; padding: 0.5rem 0.75rem; border-radius: 4px; font-size: 0.85rem; font-weight: 600; display: inline-block; margin-top: 0.75rem; }
+        
+        .section-alt { background: var(--bg-light); }
+        
+        footer { background: var(--text-primary); color: white; padding: 3rem 1.5rem; text-align: center; }
+        .contact-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1.5rem; margin-top: 2rem; text-align: center; }
+        .contact-box { padding: 1.75rem; background: rgba(255,255,255,0.1); border-radius: 8px; }
+        .contact-box h4 { color: var(--accent-light); margin-bottom: 1rem; font-size: 1rem; font-weight: 700; }
+        .contact-box a { display: inline-block; color: white; text-decoration: none; font-weight: 600; padding: 0.75rem 1.5rem; background: var(--accent); border-radius: 6px; margin-top: 0.75rem; transition: all 0.3s; font-size: 0.95rem; }
+        .contact-box a:hover { background: var(--accent-light); transform: scale(1.05); }
+        footer p { color: rgba(255,255,255,0.8); font-size: 0.95rem; margin-top: 2rem; }
+        
+        .pub-label { background: #e8f5e9; color: #2e7d32; padding: 0.3rem 0.6rem; border-radius: 3px; font-size: 0.75rem; font-weight: 700; margin-left: 0.5rem; display: inline-block; }
+        .pub-section-title { margin-top: 2.5rem; margin-bottom: 1.5rem; font-size: 1.2rem; font-weight: 700; color: var(--text-primary); border-bottom: 2px solid var(--accent); padding-bottom: 0.5rem; }
+        
+        @media (max-width: 768px) {
+            .about-intro { grid-template-columns: 1fr; }
+            header h1 { font-size: 2rem; }
+            nav .nav-links { gap: 0.25rem; }
+            nav a { padding: 0.75rem 0.6rem; font-size: 0.8rem; }
+            .timeline::before { left: 15px; }
+            .timeline-item { padding-left: 60px; }
+            .timeline-item::before { left: 4px; }
+            .media-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dr. Mehak Zahoor Khan</h1>
+        <div class="tagline">Translating fundamental discoveries into therapeutic innovation.</div>
+        <div class="subtagline">Bacterial Immunologist with 12+ years research experience advancing vaccine development, systems immunology, and functional antibody therapeutics at premier institutions and industry leaders.</div>
+    </header>
+
+    <nav>
+        <div class="container">
+            <div class="nav-links">
+                <a href="#about">About</a>
+                <a href="#career" onclick="toggleSection('career')">Career</a>
+                <a href="#research" onclick="toggleSection('research')">Research</a>
+                <a href="#awards" onclick="toggleSection('awards')">Awards</a>
+                <a href="#skills" onclick="toggleSection('skills')">Skills</a>
+                <a href="#publications">Publications</a>
+                <a href="#media">Media</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section id="about" class="section-alt">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-intro">
+                <div style="text-align: center;">
+                    <div style="background: var(--accent); width: 100%; aspect-ratio: 1; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; font-weight: bold;">MK</div>
+                </div>
+                <div>
+                    <p>I am a bacterial immunologist and vaccine development scientist dedicated to bridging fundamental research and therapeutic innovation. My career spans translational immunology at world-class institutions—from the Ragon Institute of MGH, MIT and Harvard and the National Institute of Immunology in India to top innovative biotech including Moderna Therapeutics and Omniose.</p>
+                    <p>My research focuses on understanding protective immunity against infectious diseases and translating those insights into next-generation vaccines and antibody therapeutics. I combine systems serology, functional immunology, and multi-omic approaches to define disease mechanisms and enable rational therapeutic design.</p>
+                    <p><strong>Current role:</strong> Scientist III (Principal Scientist equivalent) at Omniose, leading functional immunology for bacterial vaccine development and NIH-supported programs targeting critical global health pathogens.</p>
+                    <p><strong>Expertise:</strong> Monoclonal Antibody Discovery · Antibody Engineering · Vaccine Development · Systems Serology · Functional Immunoassays · Translational Research · Program Management · Scientific Leadership</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="metrics" class="section-alt">
+        <div class="container">
+            <h2>Impact Metrics</h2>
+            <div class="grid-4">
+                <div class="stat-box" onclick="window.open('https://scholar.google.com/citations?user=sWfckTgAAAAJ&hl=en', '_blank')">
+                    <div class="stat-number">589</div>
+                    <div class="stat-label">Citations to date</div>
+                </div>
+                <div class="stat-box" onclick="window.open('https://pubmed.ncbi.nlm.nih.gov/?term=mehak+zahoor+khan&sort=date', '_blank')">
+                    <div class="stat-number">19</div>
+                    <div class="stat-label">Peer-reviewed publications</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Book chapter</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Editorials</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">7</div>
+                    <div class="stat-label">First/co-first authored</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">Invention disclosure</div>
+                </div>
+                <div class="stat-box" onclick="window.open('https://www.linkedin.com/in/mehak-khan-73a07615b/', '_blank')">
+                    <div class="stat-number">2</div>
+                    <div class="stat-label">Editorial board positions</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Peer reviews completed</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="career">
+        <div class="container">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <span>Career Timeline</span>
+                <span class="toggle">▼</span>
+            </div>
+            <div class="collapsible-content active">
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Scientist III (Principal Scientist equivalent)</h3>
+                        <div class="company">Omniose, St. Louis, MO</div>
+                        <div class="date">April 2026 - Present</div>
+                        <ul>
+                            <li>Lead assay development and standardization for preclinical vaccine and biologics programs, enabling robust, reproducible measurement of functional antibody-mediated protection.</li>
+                            <li>Optimized high-throughput opsonophagocytic killing and serum bactericidal assays across three preclinical programs, reducing manual processing time by 50% and driving substantial cost savings.</li>
+                            <li>Integrate functional immunological readouts with serological profiling to inform candidate selection and translational go/no-go decision-making.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h3>Senior Research Fellow</h3>
+                        <div class="company">Ragon Institute (MGH/MIT/Harvard), Cambridge, MA</div>
+                        <div class="date">January 2025 - March 2026</div>
+                        <ul>
+                            <li>Isolated and Fc-engineered high affinity antibodies against S. aureus and Shigella targets through single B cell screening technologies followed by NGS.</li>
+                            <li>Led translational immunology program generating 182,149 antibody features from pediatric biospecimens.</li>
+                            <li>Defined humoral correlates of protection against S. aureus, pertussis, and Shigella.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h3>Senior Scientist, Immunology (Infectious Diseases)</h3>
+                        <div class="company">Moderna Therapeutics, Cambridge, MA</div>
+                        <div class="date">November 2022 - January 2025</div>
+                        <ul>
+                            <li>Advanced antibody discovery programs for two targets from concept to preclinical stage, developing therapeutic candidates through optimized immunization strategies and plasma/memory B-cell sorting (FACS).</li>
+                            <li>Served as scientific research lead for two global-health mRNA vaccine programs, driving antigen selection, experimental strategy, assay development, and immune profiling.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h3>Postdoctoral Research Associate</h3>
+                        <div class="company">Ragon Institute & National Institute of Immunology, India</div>
+                        <div class="date">Jan 2020 - Oct 2022</div>
+                        <ul>
+                            <li>Generated a proteome-wide atlas of protective humoral immunity to M. tuberculosis across the spectrum of disease.</li>
+                            <li>Demonstrated that Fc-engineered antibodies enhance neutrophil-mediated killing of M. tuberculosis, providing proof-of-concept for antibody engineering as a host-directed therapy.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <h3>PhD in Microbiology</h3>
+                        <div class="company">National Institute of Immunology, New Delhi, India</div>
+                        <div class="date">June 2014 - January 2020</div>
+                        <ul>
+                            <li>Discovered novel transcriptional and signaling pathways regulating M. tuberculosis persistence and virulence, contributing to multiple high-impact publications.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="research" class="section-alt">
+        <div class="container">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <span>Research Contributions</span>
+                <span class="toggle">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <p class="section-subtitle">Advancing understanding of protective immunity and translating discoveries into therapeutic solutions</p>
+                <div class="grid-2">
+                    <div class="card">
+                        <h3>mAb Discovery</h3>
+                        <p>Successfully led monoclonal antibody and nanobody discovery campaigns for at least six bacterial targets from human PBMCs and immunized animals.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Fc-Engineered Antibody Therapeutics</h3>
+                        <p>Advanced antibody engineering for enhanced potency, affinity, half-life, developability and immune effector functions. Extended approach across S. aureus, Shigella, RSV, SARS-CoV-2, and cancer targets.</p>
+                    </div>
+                    <div class="card">
+                        <h3>mRNA Vaccine Development</h3>
+                        <p>Led antigen selection and immune profiling for TB and Malaria vaccines. Demonstrated preclinical efficacy of multivalent mRNA candidates surpassing current BCG vaccine performance.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Systems Serology & Immune Profiling</h3>
+                        <p>Generated high-dimensional antibody datasets (182K+ features) across multiple pathogens. Defined protective humoral signatures enabling rational vaccine design and patient stratification approaches.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Biomarker Assay Innovation</h3>
+                        <p>Optimized opsonophagocytic killing, serum bactericidal, ADCP, ADNP, ADCD assays. Reduced manual processing by 50%. Standardized functional readouts for vaccine and therapeutic evaluation.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Multi-omic Integration</h3>
+                        <p>Synthesized systems serology, spatial transcriptomics, RNA-seq, and proteomics. Identified antibody-mediated disease mechanisms in cancer. Designed innovative therapeutic strategies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="awards">
+        <div class="container">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <span>Awards & Recognition</span>
+                <span class="toggle">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <p class="section-subtitle">National and international recognition for scientific excellence (most recent first)</p>
+                <div class="grid-3">
+                    <div class="award-card">
+                        <div class="award-year">2026</div>
+                        <div class="award-name">Distinguished Alumni Award</div>
+                        <div class="award-org">Institute of Home Economics, University of Delhi</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2026</div>
+                        <div class="award-name">Sigma Xi Full Membership</div>
+                        <div class="award-org">Scientific Research Honor Society</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2023</div>
+                        <div class="award-name">INSA Young Scientist Medal</div>
+                        <div class="award-org">Indian National Science Academy</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2022</div>
+                        <div class="award-name">Research Excellence Award</div>
+                        <div class="award-org">India Investigator Network</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2020</div>
+                        <div class="award-name">DST-INSPIRE Faculty Award</div>
+                        <div class="award-org">Government of India</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2019</div>
+                        <div class="award-name">Global Health Travel Award</div>
+                        <div class="award-org">Bill & Melinda Gates Foundation</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2018</div>
+                        <div class="award-name">Best Poster Award by JBC</div>
+                        <div class="award-org">India-EMBO TB Symposium</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2017</div>
+                        <div class="award-name">Best Poster Award</div>
+                        <div class="award-org">NII Young Emerging Scientist Symposium</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2014</div>
+                        <div class="award-name">University Gold Medal</div>
+                        <div class="award-org">University of Delhi (Academic Excellence)</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2014</div>
+                        <div class="award-name">Monsanto Scholarship</div>
+                        <div class="award-org">Academic Excellence, University of Delhi</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2014</div>
+                        <div class="award-name">Research Fellowship</div>
+                        <div class="award-org">University Grants Commission, Government of India</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2014</div>
+                        <div class="award-name">Valedictorian</div>
+                        <div class="award-org">University of Delhi (M.Sc. & B.Sc.)</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2014</div>
+                        <div class="award-name">AIR-131</div>
+                        <div class="award-org">Graduate Aptitude Test in Engineering</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2013</div>
+                        <div class="award-name">South Campus Endowment Scholarship</div>
+                        <div class="award-org">Academic Excellence, University of Delhi</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2012</div>
+                        <div class="award-name">Dr. Kumud Khanna Award</div>
+                        <div class="award-org">Best Student in Biochemistry, University of Delhi</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2012</div>
+                        <div class="award-name">Teaching Staff Trophy</div>
+                        <div class="award-org">Best All-Round Student, University of Delhi</div>
+                    </div>
+                    <div class="award-card">
+                        <div class="award-year">2012</div>
+                        <div class="award-name">Miss Summer Fields School Winner</div>
+                        <div class="award-org">Farewell Competition</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section-alt">
+        <div class="container">
+            <div class="collapsible-header" onclick="toggleCollapsible(this)">
+                <span>Core Competencies</span>
+                <span class="toggle">▼</span>
+            </div>
+            <div class="collapsible-content">
+                <p class="section-subtitle">Technical expertise and professional capabilities</p>
+                <div class="grid-2">
+                    <div class="skill-box">
+                        <h4>Antibody Discovery & Engineering</h4>
+                        <ul>
+                            <li>Monoclonal antibody development</li>
+                            <li>Nanobody discovery</li>
+                            <li>Fc-engineering for enhanced developability and function</li>
+                            <li>Affinity maturation</li>
+                            <li>Antibody characterization</li>
+                        </ul>
+                    </div>
+                    <div class="skill-box">
+                        <h4>Vaccine Development</h4>
+                        <ul>
+                            <li>Antigen selection & optimization</li>
+                            <li>mRNA, subunit and glycoconjugate vaccine design</li>
+                            <li>Immunogenicity assessment</li>
+                            <li>Candidate prioritization</li>
+                        </ul>
+                    </div>
+                    <div class="skill-box">
+                        <h4>Immunology & Serology</h4>
+                        <ul>
+                            <li>Functional immunoassays (OPK, ADCP, SBA, ADNP, ADCD)</li>
+                            <li>Systems serology & immune profiling</li>
+                            <li>ELISA, multiplex Luminex, Octet/BLI</li>
+                        </ul>
+                    </div>
+                    <div class="skill-box">
+                        <h4>Molecular Biology</h4>
+                        <ul>
+                            <li>Bacterial microbiology & genetics</li>
+                            <li>Cell culture & primary immune cells</li>
+                            <li>Flow cytometry & cell sorting</li>
+                            <li>In vivo infection models</li>
+                        </ul>
+                    </div>
+                    <div class="skill-box">
+                        <h4>Data & Computational</h4>
+                        <ul>
+                            <li>R & Python programming</li>
+                            <li>High-dimensional data analysis</li>
+                            <li>NGS analysis & interpretation</li>
+                            <li>Multi-omic data integration</li>
+                        </ul>
+                    </div>
+                    <div class="skill-box">
+                        <h4>Leadership & Strategy</h4>
+                        <ul>
+                            <li>Scientific program direction</li>
+                            <li>Cross-functional team leadership</li>
+                            <li>CRO & vendor collaboration</li>
+                            <li>Grant writing & patents</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="publications" class="section-alt">
+        <div class="container">
+            <h2>Publications</h2>
+            <p class="section-subtitle">Peer-reviewed research in high-impact journals (most recent first) | click titles to read full publications</p>
+            
+            <div class="pub-section-title">🔵 First/Co-First Authored</div>
+            
+            <div class="publication-item">
+                <a href="https://www.frontiersin.org/journals/immunology/articles/10.3389/fimmu.2026.1810894/full" target="_blank" class="pub-title">A proteome-wide atlas of humoral immunity to Mycobacterium tuberculosis across the spectrum of disease</a>
+                <div class="pub-authors"><span class="first-author">Khan MZ*</span>, <span class="first-author">Irvine EB*</span>, <span class="first-author">Cizmeci D*</span>, ...Alter G. <span class="pub-label">CO-FIRST</span></div>
+                <div class="pub-meta"><strong>Frontiers in Immunology</strong> (2026)</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://www.medrxiv.org/content/10.64898/2026.06.18.26355881v1" target="_blank" class="pub-title">Systemic and Mucosal Antibody Correlates of Protection Against Bordetella pertussis in a Controlled Human Infection Model</a>
+                <div class="pub-authors"><span class="first-author">Khan MZ*</span>, <span class="first-author">Kapoor Y*</span>, <span class="first-author">Kliuchnikov E*</span>, et al. <span class="pub-label">CO-FIRST</span></div>
+                <div class="pub-meta"><strong>MedRxiv</strong> (2026) | Preprint</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://www.biorxiv.org/content/10.64898/2026.06.26.734609v1" target="_blank" class="pub-title">Antibody Correlates of Resilience to Staphylococcus aureus Disease and Recurrence in Children</a>
+                <div class="pub-authors"><span class="first-author">Khan MZ*</span>, <span class="first-author">Kao CM*</span>, Jung W, et al. <span class="pub-label">CO-FIRST</span></div>
+                <div class="pub-meta"><strong>BioRxiv</strong> (2026) | Preprint</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12322566/" target="_blank" class="pub-title">Adenovectored RSV prefusion glycoprotein + soluble glycoprotein combination immunization establishes persistent opsonophagocytic antibody response through IgG3</a>
+                <div class="pub-authors">Tong X, Blanc R, Cizmeci D, et al., <span class="first-author">Khan MZ</span>, et al. <span class="pub-label">CO-AUTHOR</span></div>
+                <div class="pub-meta"><strong>Frontiers in Immunology</strong> (2025) | 16:1609779</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://www.nature.com/articles/s41564-024-01777-9" target="_blank" class="pub-title">Fc-engineered antibodies promote neutrophil-dependent control of Mycobacterium tuberculosis</a>
+                <div class="pub-authors"><span class="first-author">Irvine EB*</span>, Nikolov A, <span class="first-author">Khan MZ*</span>, et al. <span class="pub-label">CO-FIRST</span></div>
+                <div class="pub-meta"><strong>Nature Microbiology</strong> (2024) | 9:2369–2382</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://elifesciences.org/articles/91970" target="_blank" class="pub-title">Divergent downstream biosynthetic pathways are supported by L-cysteine synthases of M. tuberculosis</a>
+                <div class="pub-authors"><span class="first-author">Khan MZ</span>, Hunt B, Singha B, Kapoor Y, Singh NK, et al. <span class="pub-label">FIRST</span></div>
+                <div class="pub-meta"><strong>eLife</strong> (2024)</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://link.springer.com/article/10.15252/embj.2020106111" target="_blank" class="pub-title">Redox homeostasis in Mycobacterium tuberculosis is modulated by a novel actinomycetes-specific transcription factor</a>
+                <div class="pub-authors"><span class="first-author">Khan MZ</span>, Singha B, Ali F, Khusman T, Rapole S, et al. <span class="pub-label">FIRST</span></div>
+                <div class="pub-meta"><strong>EMBO Journal</strong> (2021)</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://academic.oup.com/jid/article/224/8/1383/6134355" target="_blank" class="pub-title">Mycobacterium tuberculosis Peptidyl Prolyl isomerase A interacts with the host integrin receptor to exacerbate disease progression</a>
+                <div class="pub-authors"><span class="first-author">Dubey N*</span>, <span class="first-author">Khan MZ*</span>, et al. <span class="pub-label">CO-FIRST</span></div>
+                <div class="pub-meta"><strong>Journal of Infectious Diseases</strong> (2021)</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5625041/" target="_blank" class="pub-title">Protein kinase G confers survival advantage to Mycobacterium tuberculosis during latency-like conditions</a>
+                <div class="pub-authors"><span class="first-author">Khan MZ*</span>, <span class="first-author">Bhaskar A*</span>, <span class="first-author">Upadhyay S*</span>, et al. <span class="pub-label">CO-FIRST</span></div>
+                <div class="pub-meta"><strong>Journal of Biological Chemistry</strong> (2017)</div>
+            </div>
+
+            <div class="pub-section-title">⚪ Contributing Author</div>
+
+            <div class="publication-item">
+                <a href="https://journals.asm.org/doi/10.1128/mbio.00557-26" target="_blank" class="pub-title">Fc-engineered antibodies enhance protection against SARS-CoV-2 lung infection and inflammation</a>
+                <div class="pub-authors">Mackin SR, Liang C, Karl CE, et al., <span class="first-author">Khan MZ</span>, et al.</div>
+                <div class="pub-meta"><strong>mBio</strong> (2026)</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="http://journals.asm.org/doi/full/10.1128/mbio.02846-25" target="_blank" class="pub-title">Vaccine-induced antibodies can limit Salmonella infection in the absence of complement or macrophages</a>
+                <div class="pub-authors">Perez-Toledo et al.</div>
+                <div class="pub-meta"><strong>mBio</strong> (2026)</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://pubmed.ncbi.nlm.nih.gov/35471080/" target="_blank" class="pub-title">Mycobacterium tuberculosis Transcription Factor EmbR Regulates the Expression of Key Virulence Factors That Aid in Ex Vivo and In Vivo Survival</a>
+                <div class="pub-authors">Kumar S, <span class="first-author">Khan MZ</span>, Khandelwal N, Chongtham C, et al.</div>
+                <div class="pub-meta"><strong>mBio</strong> (2022) | e0383621</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://pubs.acs.org/doi/10.1021/acsbiomaterials.2c00924" target="_blank" class="pub-title">The unique N-terminal region of Mycobacterium tuberculosis sigma factor A plays a dominant role in the essential function of this protein</a>
+                <div class="pub-authors">Singha B, Behera D, <span class="first-author">Khan MZ</span>, et al.</div>
+                <div class="pub-meta"><strong>Journal of Biological Chemistry</strong> (2023) | 299(3):102933</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://journals.asm.org/doi/10.1128/aac.02095-20" target="_blank" class="pub-title">Deletion of pknG abates reactivation of latent Mycobacterium tuberculosis in mice</a>
+                <div class="pub-authors"><span class="first-author">Khan MZ</span> and Nandicoori VK.</div>
+                <div class="pub-meta"><strong>Antimicrobial Agents and Chemotherapy</strong> (2021)</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://iubmb.onlinelibrary.wiley.com/doi/10.1002/iub.1871" target="_blank" class="pub-title">Targeting the messengers: Serine/Threonine Protein Kinases as potential targets for antimycobacterial drug development</a>
+                <div class="pub-authors"><span class="first-author">Khan MZ</span>, Kaur P, Nandicoori VK.</div>
+                <div class="pub-meta"><strong>IUBMB Life</strong> (2018)</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://elifesciences.org/articles/55415" target="_blank" class="pub-title">Host Sirtuin 2 as an immunotherapeutic target against tuberculosis</a>
+                <div class="pub-authors">Bhaskar A, Kumar S, <span class="first-author">Khan MZ</span>, et al.</div>
+                <div class="pub-meta"><strong>eLife</strong> (2020) | e55415</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://www.sciencedirect.com/science/article/pii/S0021925823000650?via%3Dihub" target="_blank" class="pub-title">Hydrophobicity of Cholic Acid-Derived Amphiphiles Dictates the Antimicrobial Specificity</a>
+                <div class="pub-authors">Gupta S, Arora A, <span class="first-author">Khan MZ</span>, et al.</div>
+                <div class="pub-meta"><strong>ACS Biomaterials Science & Engineering</strong> (2022) | 8(11):4996–5007</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://pubmed.ncbi.nlm.nih.gov/35038229/" target="_blank" class="pub-title">Development of a Highly Specific, Selective, and Sensitive Fluorescent Probe for Detection of Mycobacteria in Human Tissues</a>
+                <div class="pub-authors">Gupta S, Mishra DK, <span class="first-author">Khan MZ</span>, Saini V, et al.</div>
+                <div class="pub-meta"><strong>Advanced Healthcare Materials</strong> (2022) | e2102640</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://pubmed.ncbi.nlm.nih.gov/31375544/" target="_blank" class="pub-title">Interaction of mycobacterial protein PPE2 with p67phox prevents NADPH oxidase mediated ROS generation in macrophages</a>
+                <div class="pub-authors">Srivasta S, Battu MB, <span class="first-author">Khan MZ</span>, Nandicoori VK, Mukhopadhyay S.</div>
+                <div class="pub-meta"><strong>Journal of Immunology</strong> (2019) | 203(5):1218-1229</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="http://pubmed.ncbi.nlm.nih.gov/29903917/" target="_blank" class="pub-title">Delineating FtsQ mediated regulation of cell division process in Mycobacterium tuberculosis</a>
+                <div class="pub-authors">Jain P, Malakar B, <span class="first-author">Khan MZ</span>, Lochab S, et al.</div>
+                <div class="pub-meta"><strong>Journal of Biological Chemistry</strong> (2018) | 293(32):12331-12349</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://www.nature.com/articles/srep25006" target="_blank" class="pub-title">Genome-wide non-CpG methylation of the host genome during M. tuberculosis infection</a>
+                <div class="pub-authors">Sharma G, Sowpati DT, Singh P, <span class="first-author">Khan MZ</span>, et al.</div>
+                <div class="pub-meta"><strong>Scientific Reports</strong> (2016) | 6:25006</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://www.biorxiv.org/content/10.1101/2023.12.01.569475v1.full" target="_blank" class="pub-title">A mitochondrial quality control mechanism reverses the phagosome maturation arrest caused by Mycobacterium tuberculosis</a>
+                <div class="pub-authors">Verma S, Das M, Sharma RD, et al., <span class="first-author">Khan MZ</span>, et al.</div>
+                <div class="pub-meta"><strong>BioRxiv</strong> (2023) | Preprint</div>
+            </div>
+
+            <div class="pub-section-title">📕 Book Chapter</div>
+            <div class="publication-item">
+                <a href="http://wolterskluwer.com/en/solutions/ovid/covid19-textbook-the-science-medicine-and-public-health-16648" target="_blank" class="pub-title">Antibodies in COVID-19</a>
+                <div class="pub-authors"><span class="first-author">Khan MZ</span>, Leeson R, Henry C, Alter G.</div>
+                <div class="pub-meta">In: Haseltine, The COVID-19 Textbook: Science, Medicine, and Public Health.</div>
+            </div>
+
+            <div class="pub-section-title">✍️ Editorial</div>
+            <div class="publication-item">
+                <div class="pub-title">Host-Pathogen Interactions in Intracellular Bacteria: Mechanisms, Evasion Strategies, and Therapeutic Insights</div>
+                <div class="pub-authors"><span class="first-author">Khan MZ</span>, Singh A, Khan J, Umar D, Hakeim O.</div>
+                <div class="pub-meta"><strong>Frontiers in Molecular Bioscience</strong> (2026)</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="media">
+        <div class="container">
+            <h2>News & Media Coverage</h2>
+            <p class="section-subtitle">Featured in leading science publications and media outlets</p>
+            
+            <div class="media-grid">
+                <div class="media-card" onclick="window.open('https://biovoicenews.com/scientists-find-protein-role-in-tb-bacteria-growth/', '_blank')">
+                    <img src="images/media_biovoice.jpg" alt="BioVoice News">
+                    <div class="media-card-overlay">
+                        <div class="media-card-title">Scientists find protein role in TB bacteria growth</div>
+                        <div class="media-card-source">BioVoice News</div>
+                    </div>
+                </div>
+
+                <div class="media-card" onclick="window.open('https://indiabioscience.org/news/2024/the-ongoing-chase-tracking-mycobacterium-tuberculosis-in-the-evolutionary-race', '_blank')">
+                    <img src="images/media_indiabioscience.jpg" alt="India BioScience">
+                    <div class="media-card-overlay">
+                        <div class="media-card-title">The ongoing chase: Tracking Mycobacterium tuberculosis in the evolutionary race</div>
+                        <div class="media-card-source">India BioScience</div>
+                    </div>
+                </div>
+
+                <div class="media-card" onclick="window.open('https://scroll.in/pulse/892562/lab-notes-only-optimal-levels-of-a-cell-division-protein-allows-the-tuberculosis-pathogen-to-grow', '_blank')">
+                    <img src="images/media_scroll.jpg" alt="Scroll.in">
+                    <div class="media-card-overlay">
+                        <div class="media-card-title">Lab notes: Only optimal levels of a cell division protein allows the tuberculosis pathogen to grow</div>
+                        <div class="media-card-source">Scroll.in</div>
+                    </div>
+                </div>
+
+                <div class="media-card" onclick="window.open('https://scisoup.org/article/2021/newer-insights-into-an-age-old-bacteria.html', '_blank')">
+                    <img src="images/media_scisoup.jpg" alt="SciSoup">
+                    <div class="media-card-overlay">
+                        <div class="media-card-title">Newer Insights Into An Age Old Bacteria</div>
+                        <div class="media-card-source">SciSoup</div>
+                    </div>
+                </div>
+
+                <div class="media-card" onclick="window.open('https://biopatrika.com/academia/researcher-spotlight/interview-understanding-how-mycobacterium-tuberculosis-tackles-oxidative-stress-in-the-host-2/', '_blank')">
+                    <img src="images/media_biopatrika.jpg" alt="BioPatrika">
+                    <div class="media-card-overlay">
+                        <div class="media-card-title">Understanding how Mycobacterium tuberculosis tackles oxidative stress in the host</div>
+                        <div class="media-card-source">BioPatrika Researcher Spotlight</div>
+                    </div>
+                </div>
+
+                <div class="media-card" onclick="window.open('https://www.thehindu.com/sci-tech/science/studies-zero-in-on-biology-tb-bacteria-uses-to-evade-immune-response/article68752164.ece', '_blank')">
+                    <img src="images/media_thehindu.jpg" alt="The Hindu">
+                    <div class="media-card-overlay">
+                        <div class="media-card-title">Researchers zero in on how the TB bacteria evade immune response</div>
+                        <div class="media-card-source">The Hindu</div>
+                    </div>
+                </div>
+
+                <div class="media-card" onclick="window.open('https://www.thehindubusinessline.com/news/science/scientists-find-protein-role-in-tb-bacteria-growth/article24812159.ece', '_blank')">
+                    <img src="images/media_hindubl.jpg" alt="The Hindu Business Line">
+                    <div class="media-card-overlay">
+                        <div class="media-card-title">Scientists find protein role in TB bacteria growth</div>
+                        <div class="media-card-source">The Hindu Business Line</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="talks" class="section-alt">
+        <div class="container">
+            <h2>Posters & Invited Talks</h2>
+            <p class="section-subtitle">Conference presentations and speaking engagements</p>
+            
+            <div class="talk-item">
+                <div class="title">Ragon Institute Scientific Seminars</div>
+                <div class="meta">Invited Speaker</div>
+                <div class="location">Cambridge, Massachusetts, USA (2026)</div>
+            </div>
+
+            <div class="talk-item">
+                <div class="title">Infectious Disease Research Day</div>
+                <div class="meta">Presenter</div>
+                <div class="location">Moderna, Cambridge, Massachusetts, USA (2024)</div>
+            </div>
+
+            <div class="talk-item">
+                <div class="title">India-EMBO TB Symposium: Mycobacterial Heterogeneity & Host Tissue Tropism</div>
+                <div class="meta">Presenter</div>
+                <div class="location">New Delhi, India (2020)</div>
+                <div class="award">🏆 Best Poster Award</div>
+            </div>
+
+            <div class="talk-item">
+                <div class="title">Keystone A3: Tuberculosis - Mechanisms, Pathogenesis and Treatment</div>
+                <div class="meta">Poster Presentation</div>
+                <div class="location">Banff, Canada (2019)</div>
+            </div>
+
+            <div class="talk-item">
+                <div class="title">Young Emerging Scientist Symposium</div>
+                <div class="meta">Presenter</div>
+                <div class="location">National Institute of Immunology, New Delhi, India (2017)</div>
+                <div class="award">🏆 Best Poster Award</div>
+            </div>
+
+            <div class="talk-item">
+                <div class="title">5th Global Forum for TB Vaccines</div>
+                <div class="meta">Presenter</div>
+                <div class="location">New Delhi, India (2018)</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section-alt">
+        <div class="container">
+            <h2>Contact & Connect</h2>
+            <p class="section-subtitle">Collaborate on vaccine development, translational immunology, and infectious disease research</p>
+            <div class="contact-section">
+                <div class="contact-box">
+                    <h4>Email</h4>
+                    <a href="mailto:kzmehak@gmail.com">kzmehak@gmail.com</a>
+                </div>
+                <div class="contact-box">
+                    <h4>LinkedIn</h4>
+                    <a href="https://www.linkedin.com/in/mehak-khan-73a07615b/" target="_blank">Connect</a>
+                </div>
+                <div class="contact-box">
+                    <h4>ResearchGate</h4>
+                    <a href="https://www.researchgate.net/profile/Mehak-Khan-4" target="_blank">Profile</a>
+                </div>
+                <div class="contact-box">
+                    <h4>Google Scholar</h4>
+                    <a href="https://scholar.google.com/citations?user=sWfckTgAAAAJ" target="_blank">Profile</a>
+                </div>
+                <div class="contact-box">
+                    <h4>ORCID</h4>
+                    <a href="https://orcid.org/0000-0002-2780-4119" target="_blank">0000-0002-2780-4119</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Mehak Khan | Bacterial Immunologist & Vaccine Development Scientist</p>
+    </footer>
+
+    <script>
+        function toggleCollapsible(header) {
+            header.classList.toggle('active');
+            const content = header.nextElementSibling;
+            content.classList.toggle('active');
+        }
+
+        function toggleSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            const header = section.querySelector('.collapsible-header');
+            if (header) {
+                header.classList.toggle('active');
+                const content = header.nextElementSibling;
+                content.classList.toggle('active');
+            }
+        }
+    </script>
+</body>
+</html>
