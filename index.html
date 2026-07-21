@@ -11,7 +11,7 @@
         :root { --text-primary: #1a1a1a; --text-secondary: #666; --text-muted: #999; --bg-light: #f5f3f0; --bg-white: #ffffff; --accent: #1e40af; --accent-light: #3b82f6; --border: #e5e5e5; }
         @media (prefers-color-scheme: dark) { :root { --text-primary: #f5f5f5; --text-secondary: #d0d0d0; --text-muted: #999; --bg-light: #1a1a1a; --bg-white: #2d2d2d; --accent: #3b82f6; --accent-light: #60a5fa; --border: #444; } }
         
-        header { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); color: white; padding: 3rem 1.5rem; text-align: center; }
+        header { background: linear-gradient(135deg, rgba(30, 64, 175, 0.75) 0%, rgba(59, 130, 246, 0.75) 100%), url('images/header-bg.jpg') center/cover; color: white; padding: 3rem 1.5rem; text-align: center; }
         header h1 { font-size: 2.8rem; margin-bottom: 0.5rem; font-weight: 700; }
         header .tagline { font-size: 1rem; opacity: 0.95; margin-bottom: 0.5rem; }
         header .subtagline { font-size: 1.05rem; opacity: 0.9; margin-bottom: 1.5rem; line-height: 1.7; max-width: 800px; margin-left: auto; margin-right: auto; }
@@ -152,9 +152,7 @@
         <div class="container">
             <h2>About Me</h2>
             <div class="about-intro">
-                <div style="text-align: center;">
-                    <div style="background: var(--accent); width: 100%; aspect-ratio: 1; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; font-weight: bold;">MK</div>
-                </div>
+                <img src="images/profile-photo.jpg" alt="Dr. Mehak Zahoor Khan" class="about-photo">
                 <div>
                     <p>I am a bacterial immunologist and vaccine development scientist dedicated to bridging fundamental research and therapeutic innovation. My career spans translational immunology at world-class institutions—from the Ragon Institute of MGH, MIT and Harvard and the National Institute of Immunology in India to top innovative biotech including Moderna Therapeutics and Omniose.</p>
                     <p>My research focuses on understanding protective immunity against infectious diseases and translating those insights into next-generation vaccines and antibody therapeutics. I combine systems serology, functional immunology, and multi-omic approaches to define disease mechanisms and enable rational therapeutic design.</p>
@@ -186,7 +184,7 @@
                     <div class="stat-label">Editorials</div>
                 </div>
                 <div class="stat-box">
-                    <div class="stat-number">7</div>
+                    <div class="stat-number">8</div>
                     <div class="stat-label">First/co-first authored</div>
                 </div>
                 <div class="stat-box">
@@ -218,20 +216,25 @@
                         <div class="company">Omniose, St. Louis, MO</div>
                         <div class="date">April 2026 - Present</div>
                         <ul>
-                            <li>Lead assay development and standardization for preclinical vaccine and biologics programs, enabling robust, reproducible measurement of functional antibody-mediated protection.</li>
+                            <li>Lead assay development and standardization for preclinical vaccines and biologics, enabling robust, reproducible measurement of functional antibody-mediated protection.</li>
                             <li>Optimized high-throughput opsonophagocytic killing and serum bactericidal assays across three preclinical programs, reducing manual processing time by 50% and driving substantial cost savings.</li>
                             <li>Integrate functional immunological readouts with serological profiling to inform candidate selection and translational go/no-go decision-making.</li>
+                            <li>Liaise across internal and external stakeholders, maintaining communication pathways, timelines, and regularly presenting on project progress to leadership.</li>
+                            <li>Prepare technical summaries, protocols, quantitative analyses, and maintain comprehensive documentation.</li>
                         </ul>
                     </div>
                     
                     <div class="timeline-item">
                         <h3>Senior Research Fellow</h3>
-                        <div class="company">Ragon Institute (MGH/MIT/Harvard), Cambridge, MA</div>
+                        <div class="company">Ragon Institute of Mass General Brigham, MIT and Harvard, Cambridge, MA</div>
                         <div class="date">January 2025 - March 2026</div>
                         <ul>
                             <li>Isolated and Fc-engineered high affinity antibodies against S. aureus and Shigella targets through single B cell screening technologies followed by NGS.</li>
-                            <li>Led translational immunology program generating 182,149 antibody features from pediatric biospecimens.</li>
-                            <li>Defined humoral correlates of protection against S. aureus, pertussis, and Shigella.</li>
+                            <li>Led a translational immunology program that generated a high-dimensional systems serology dataset comprising 182,149 antibody features from pediatric Staphylococcus aureus infections, enabling discovery of protective humoral signatures for vaccine and monoclonal antibody development.</li>
+                            <li>Defined mucosal and systemic correlates of protection against Bordetella pertussis, uncovering functional IgG/IgA signatures that inform next-generation pertussis vaccines.</li>
+                            <li>Conducted a multi-omic investigation integrating systems serology, digital spatial transcriptomics, single-nucleus RNA-seq, proteomics, and biophysical modeling to define humoral immune mechanisms underlying long-term survival in pancreatic ductal adenocarcinoma (PDAC).</li>
+                            <li>Profiled maternal–infant Shigella cohorts, discovering protective humoral responses in maternal serum and breast milk guiding maternal immunization approaches.</li>
+                            <li>Mentored and oversaw day-to-day operations of junior research fellows, research technicians, and interns (up to 3 direct reports).</li>
                         </ul>
                     </div>
                     
@@ -240,18 +243,25 @@
                         <div class="company">Moderna Therapeutics, Cambridge, MA</div>
                         <div class="date">November 2022 - January 2025</div>
                         <ul>
-                            <li>Advanced antibody discovery programs for two targets from concept to preclinical stage, developing therapeutic candidates through optimized immunization strategies and plasma/memory B-cell sorting (FACS).</li>
-                            <li>Served as scientific research lead for two global-health mRNA vaccine programs, driving antigen selection, experimental strategy, assay development, and immune profiling.</li>
+                            <li>Advanced bacterial antibody discovery programs from concept to preclinical stage, focusing on the development of therapeutic candidates, optimizing immunization strategies, and utilizing B cell separation and plasma/memory B cell sorting techniques including FACS.</li>
+                            <li>Engineered antibodies to improve potency, affinity, half-life, and developability.</li>
+                            <li>Served as scientific research lead for two global health mRNA vaccine programs, driving key decisions including vaccine antigen selection, experimental strategy, assay development, immune profiling, data interpretation, and cross-functional decision-making to support antigen prioritization and candidate advancement.</li>
+                            <li>Applied PhIP-Seq for high-throughput antigen identification and antibody profiling, enabling discovery of protective and therapeutic candidates.</li>
+                            <li>Supervised associates and coordinated multi-site collaborations with KOLs and external partners.</li>
                         </ul>
                     </div>
                     
                     <div class="timeline-item">
                         <h3>Postdoctoral Research Associate</h3>
-                        <div class="company">Ragon Institute & National Institute of Immunology, India</div>
-                        <div class="date">Jan 2020 - Oct 2022</div>
+                        <div class="company">Ragon Institute of Mass General Brigham, MIT and Harvard, Cambridge, MA, USA & National Institute of Immunology, India</div>
+                        <div class="date">January 2020 - November 2022</div>
                         <ul>
-                            <li>Generated a proteome-wide atlas of protective humoral immunity to M. tuberculosis across the spectrum of disease.</li>
+                            <li>Generated a proteome-wide atlas of protective humoral immunity to M. tuberculosis across the disease spectrum.</li>
+                            <li>Investigated vaccine-mediated protective response against respiratory syncytial virus.</li>
+                            <li>Identified immune regulatory mechanisms by which antibodies leverage control of M. tuberculosis.</li>
                             <li>Demonstrated that Fc-engineered antibodies enhance neutrophil-mediated killing of M. tuberculosis, providing proof-of-concept for antibody engineering as a host-directed therapy.</li>
+                            <li>Unraveled host–pathogen mechanisms in M. tuberculosis, including kinase regulation of latency and oxidative stress pathways.</li>
+                            <li>Identified host Sirtuin-2 as an immunotherapeutic target against tuberculosis, establishing a new host-directed intervention strategy.</li>
                         </ul>
                     </div>
                     
@@ -260,7 +270,7 @@
                         <div class="company">National Institute of Immunology, New Delhi, India</div>
                         <div class="date">June 2014 - January 2020</div>
                         <ul>
-                            <li>Discovered novel transcriptional and signaling pathways regulating M. tuberculosis persistence and virulence, contributing to multiple high-impact publications.</li>
+                            <li>Discovered novel transcriptional and signaling pathways regulating M. tuberculosis persistence and virulence, contributing to 14+ high-impact publications.</li>
                         </ul>
                     </div>
                 </div>
@@ -499,33 +509,33 @@
             </div>
 
             <div class="publication-item">
-                <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12322566/" target="_blank" class="pub-title">Adenovectored RSV prefusion glycoprotein + soluble glycoprotein combination immunization establishes persistent opsonophagocytic antibody response through IgG3</a>
-                <div class="pub-authors">Tong X, Blanc R, Cizmeci D, et al., <span class="first-author">Khan MZ</span>, et al. <span class="pub-label">CO-AUTHOR</span></div>
-                <div class="pub-meta"><strong>Frontiers in Immunology</strong> (2025) | 16:1609779</div>
-            </div>
-
-            <div class="publication-item">
-                <a href="https://www.nature.com/articles/s41564-024-01777-9" target="_blank" class="pub-title">Fc-engineered antibodies promote neutrophil-dependent control of Mycobacterium tuberculosis</a>
-                <div class="pub-authors"><span class="first-author">Irvine EB*</span>, Nikolov A, <span class="first-author">Khan MZ*</span>, et al. <span class="pub-label">CO-FIRST</span></div>
-                <div class="pub-meta"><strong>Nature Microbiology</strong> (2024) | 9:2369–2382</div>
-            </div>
-
-            <div class="publication-item">
                 <a href="https://elifesciences.org/articles/91970" target="_blank" class="pub-title">Divergent downstream biosynthetic pathways are supported by L-cysteine synthases of M. tuberculosis</a>
-                <div class="pub-authors"><span class="first-author">Khan MZ</span>, Hunt B, Singha B, Kapoor Y, Singh NK, et al. <span class="pub-label">FIRST</span></div>
+                <div class="pub-authors"><span class="first-author">Khan MZ</span>, Hunt B, Singha B, Kapoor Y, Singh NK, et al. <span class="pub-label">FIRST AUTHOR</span></div>
                 <div class="pub-meta"><strong>eLife</strong> (2024)</div>
-            </div>
-
-            <div class="publication-item">
-                <a href="https://link.springer.com/article/10.15252/embj.2020106111" target="_blank" class="pub-title">Redox homeostasis in Mycobacterium tuberculosis is modulated by a novel actinomycetes-specific transcription factor</a>
-                <div class="pub-authors"><span class="first-author">Khan MZ</span>, Singha B, Ali F, Khusman T, Rapole S, et al. <span class="pub-label">FIRST</span></div>
-                <div class="pub-meta"><strong>EMBO Journal</strong> (2021)</div>
             </div>
 
             <div class="publication-item">
                 <a href="https://academic.oup.com/jid/article/224/8/1383/6134355" target="_blank" class="pub-title">Mycobacterium tuberculosis Peptidyl Prolyl isomerase A interacts with the host integrin receptor to exacerbate disease progression</a>
                 <div class="pub-authors"><span class="first-author">Dubey N*</span>, <span class="first-author">Khan MZ*</span>, et al. <span class="pub-label">CO-FIRST</span></div>
                 <div class="pub-meta"><strong>Journal of Infectious Diseases</strong> (2021)</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://journals.asm.org/doi/10.1128/aac.02095-20" target="_blank" class="pub-title">Deletion of pknG abates reactivation of latent Mycobacterium tuberculosis in mice</a>
+                <div class="pub-authors"><span class="first-author">Khan MZ</span> and Nandicoori VK. <span class="pub-label">FIRST AUTHOR</span></div>
+                <div class="pub-meta"><strong>Antimicrobial Agents and Chemotherapy</strong> (2021)</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://link.springer.com/article/10.15252/embj.2020106111" target="_blank" class="pub-title">Redox homeostasis in Mycobacterium tuberculosis is modulated by a novel actinomycetes-specific transcription factor</a>
+                <div class="pub-authors"><span class="first-author">Khan MZ</span>, Singha B, Ali F, Khusman T, Rapole S, et al. <span class="pub-label">FIRST AUTHOR</span></div>
+                <div class="pub-meta"><strong>EMBO Journal</strong> (2021)</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://iubmb.onlinelibrary.wiley.com/doi/10.1002/iub.1871" target="_blank" class="pub-title">Targeting the messengers: Serine/Threonine Protein Kinases as potential targets for antimycobacterial drug development</a>
+                <div class="pub-authors"><span class="first-author">Khan MZ</span>, Kaur P, Nandicoori VK. <span class="pub-label">FIRST AUTHOR</span></div>
+                <div class="pub-meta"><strong>IUBMB Life</strong> (2018)</div>
             </div>
 
             <div class="publication-item">
@@ -549,6 +559,18 @@
             </div>
 
             <div class="publication-item">
+                <a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12322566/" target="_blank" class="pub-title">Adenovectored RSV prefusion glycoprotein + soluble glycoprotein combination immunization establishes persistent opsonophagocytic antibody response through IgG3</a>
+                <div class="pub-authors">Tong X, Blanc R, Cizmeci D, et al., <span class="first-author">Khan MZ</span>, et al.</div>
+                <div class="pub-meta"><strong>Frontiers in Immunology</strong> (2025) | 16:1609779</div>
+            </div>
+
+            <div class="publication-item">
+                <a href="https://www.nature.com/articles/s41564-024-01777-9" target="_blank" class="pub-title">Fc-engineered antibodies promote neutrophil-dependent control of Mycobacterium tuberculosis</a>
+                <div class="pub-authors"><span class="first-author">Irvine EB*</span>, Nikolov A, <span class="first-author">Khan MZ*</span>, et al.</div>
+                <div class="pub-meta"><strong>Nature Microbiology</strong> (2024) | 9:2369–2382</div>
+            </div>
+
+            <div class="publication-item">
                 <a href="https://pubmed.ncbi.nlm.nih.gov/35471080/" target="_blank" class="pub-title">Mycobacterium tuberculosis Transcription Factor EmbR Regulates the Expression of Key Virulence Factors That Aid in Ex Vivo and In Vivo Survival</a>
                 <div class="pub-authors">Kumar S, <span class="first-author">Khan MZ</span>, Khandelwal N, Chongtham C, et al.</div>
                 <div class="pub-meta"><strong>mBio</strong> (2022) | e0383621</div>
@@ -558,18 +580,6 @@
                 <a href="https://pubs.acs.org/doi/10.1021/acsbiomaterials.2c00924" target="_blank" class="pub-title">The unique N-terminal region of Mycobacterium tuberculosis sigma factor A plays a dominant role in the essential function of this protein</a>
                 <div class="pub-authors">Singha B, Behera D, <span class="first-author">Khan MZ</span>, et al.</div>
                 <div class="pub-meta"><strong>Journal of Biological Chemistry</strong> (2023) | 299(3):102933</div>
-            </div>
-
-            <div class="publication-item">
-                <a href="https://journals.asm.org/doi/10.1128/aac.02095-20" target="_blank" class="pub-title">Deletion of pknG abates reactivation of latent Mycobacterium tuberculosis in mice</a>
-                <div class="pub-authors"><span class="first-author">Khan MZ</span> and Nandicoori VK.</div>
-                <div class="pub-meta"><strong>Antimicrobial Agents and Chemotherapy</strong> (2021)</div>
-            </div>
-
-            <div class="publication-item">
-                <a href="https://iubmb.onlinelibrary.wiley.com/doi/10.1002/iub.1871" target="_blank" class="pub-title">Targeting the messengers: Serine/Threonine Protein Kinases as potential targets for antimycobacterial drug development</a>
-                <div class="pub-authors"><span class="first-author">Khan MZ</span>, Kaur P, Nandicoori VK.</div>
-                <div class="pub-meta"><strong>IUBMB Life</strong> (2018)</div>
             </div>
 
             <div class="publication-item">
@@ -713,6 +723,12 @@
             </div>
 
             <div class="talk-item">
+                <div class="title">Indian Investigator Network</div>
+                <div class="meta">Invited Speaker</div>
+                <div class="location">India (2022)</div>
+            </div>
+
+            <div class="talk-item">
                 <div class="title">India-EMBO TB Symposium: Mycobacterial Heterogeneity & Host Tissue Tropism</div>
                 <div class="meta">Presenter</div>
                 <div class="location">New Delhi, India (2020)</div>
@@ -745,10 +761,6 @@
             <h2>Contact & Connect</h2>
             <p class="section-subtitle">Collaborate on vaccine development, translational immunology, and infectious disease research</p>
             <div class="contact-section">
-                <div class="contact-box">
-                    <h4>Email</h4>
-                    <a href="mailto:kzmehak@gmail.com">kzmehak@gmail.com</a>
-                </div>
                 <div class="contact-box">
                     <h4>LinkedIn</h4>
                     <a href="https://www.linkedin.com/in/mehak-khan-73a07615b/" target="_blank">Connect</a>
